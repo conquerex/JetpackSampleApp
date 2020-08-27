@@ -2,6 +2,9 @@ package jetpack.sample.app.data;
 
 /**
  * Created by jongkook on 2020.08.27
+ * .
+ * REST API Base Url
+ * https://jsonplaceholder.typicode.com/
  */
 public class Post {
     private long userId;
