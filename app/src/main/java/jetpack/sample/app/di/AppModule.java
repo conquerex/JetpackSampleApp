@@ -13,6 +13,9 @@ import jetpack.sample.app.util.SingleLiveEvent;
 
 /**
  * Created by jongkook on 2020.09.01
+ * .
+ * <@Singleton>
+ * 같은 범위 내에서 하나의 인스턴스만을 반환
  */
 @Module
 public class AppModule {

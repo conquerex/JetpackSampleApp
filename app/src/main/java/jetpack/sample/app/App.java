@@ -21,7 +21,6 @@ public class App extends DaggerApplication {
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
         // AppComponent 설정이 끝난 뒤,
         // 컴파일 타임에 DaggerAppComponent가 생성된다.
-        // todo : AppComponent 설정 후
         return DaggerAppComponent.factory().create(this);
     }
 }
