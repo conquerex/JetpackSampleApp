@@ -16,8 +16,13 @@ import jetpack.sample.app.util.SingleLiveEvent;
  * .
  * <@Singleton>
  * 같은 범위 내에서 하나의 인스턴스만을 반환
+ * .
+ * <ViewModelModule.class>
+ * ViewModelModule을 애플리케이션 범위로 관리하도록 AppModule에 포함
  */
-@Module
+@Module(includes = {
+        ViewModelModule.class
+})
 public class AppModule {
     @Provides
     @Singleton
