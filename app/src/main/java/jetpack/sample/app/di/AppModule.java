@@ -8,8 +8,11 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import jetpack.sample.app.App;
 import jetpack.sample.app.util.SingleLiveEvent;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by jongkook on 2020.09.01
@@ -21,7 +24,8 @@ import jetpack.sample.app.util.SingleLiveEvent;
  * ViewModelModule을 애플리케이션 범위로 관리하도록 AppModule에 포함
  */
 @Module(includes = {
-        ViewModelModule.class
+        ViewModelModule.class,
+        RetrofitModule.class
 })
 public class AppModule {
     @Provides
@@ -43,5 +47,19 @@ public class AppModule {
     @Named("errorEvent")
     SingleLiveEvent<Throwable> provideErrorEvent() {
         return new SingleLiveEvent<>();
+    }
+
+    /**
+     * Singleton이므로 앱 전역에 동일한 Retrofit 객체를 주입
+     */
+    @Provides
+    @Singleton
+    Retrofit provideRetrofit() {
+        return new Retrofit.Builder()
+                .baseUrl("https://jsonplaceholder.typicode.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .build();
+
     }
 }
