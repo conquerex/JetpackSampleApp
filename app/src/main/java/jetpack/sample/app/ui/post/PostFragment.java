@@ -28,8 +28,10 @@ public class PostFragment extends DaggerFragment {
     /**
      * 오브젝트 그래프로부터 멤버 인젝션
      */
+    // PostModule
     @Inject
     FragmentPostBinding binding;
+    // ViewModelModule
     @Inject
     AppViewModelFactory viewModelFactory;
 
