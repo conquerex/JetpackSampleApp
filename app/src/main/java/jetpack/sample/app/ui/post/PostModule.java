@@ -38,4 +38,10 @@ public class PostModule {
             }
         };
     }
+
+    /**
+     * todo : RuntimeException 발생
+     * navController가 처리되어 있지 않기 때문
+     * Caused by: java.lang.IllegalArgumentException: navigation destination jetpack.sample.app:layout/fragment_post is not a direct child of this NavGraph
+     */
 }
