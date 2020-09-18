@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import javax.inject.Inject;
 
+import dagger.Lazy;
 import dagger.android.support.DaggerFragment;
 import jetpack.sample.app.databinding.FragmentPostBinding;
 import jetpack.sample.app.di.AppViewModelFactory;
@@ -42,6 +44,10 @@ public class PostFragment extends DaggerFragment {
     LinearLayoutManager layoutManager;
 
     PostViewModel viewModel;
+
+    // NavController의 멤버 인젝션을 위해 POSTModule에 프로바이드 메서드를 추가!!!!
+    @Inject
+    Lazy<NavController> navController;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,5 +82,8 @@ public class PostFragment extends DaggerFragment {
         viewModel.getLivePosts()
                 .observe(getViewLifecycleOwner(), list -> adapter.setItems(list));
 
+        // 게시 글이 클릭되었을 때 게시글 상세 화면 목적지로 이동
+//        viewModel.getPostClickEvent()
+//                .observe(getViewLifecycleOwner(), postItem -> navController.get().navigate(...));
     }
 }

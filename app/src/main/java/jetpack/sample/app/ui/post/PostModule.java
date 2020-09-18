@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,8 +42,14 @@ public class PostModule {
     }
 
     /**
-     * todo : RuntimeException 발생
-     * navController가 처리되어 있지 않기 때문
      * Caused by: java.lang.IllegalArgumentException: navigation destination jetpack.sample.app:layout/fragment_post is not a direct child of this NavGraph
+     * navController가 처리되어 있지 않기 때문
      */
+
+    // Navigation 컴포넌트에서 목적지 간 이동을 담당하는 NavController
+    @Provides
+    @FragmentScope
+    NavController provideNavController(PostFragment fragment) {
+        return NavHostFragment.findNavController(fragment);
+    }
 }

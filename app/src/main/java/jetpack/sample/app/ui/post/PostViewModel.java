@@ -22,7 +22,7 @@ import timber.log.Timber;
 /**
  * Created by jongkook on 2020.09.08
  */
-public class PostViewModel extends AndroidViewModel {
+public class PostViewModel extends AndroidViewModel implements PostItem.EventListener {
 
     @NonNull
     private final PostService postService;
@@ -32,6 +32,9 @@ public class PostViewModel extends AndroidViewModel {
     // RecyclerView에 표현할 아이템들을 LiveData로 관리
     private final MutableLiveData<List<PostItem>> livePosts = new MutableLiveData<>();
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+
+    // implements PostItem.EventListener 추가 이후
+    private final SingleLiveEvent<PostItem> postClickEvent = new SingleLiveEvent<>();
 
     /**
      * <Dagger2와 ViewModel 설정>
@@ -60,7 +63,7 @@ public class PostViewModel extends AndroidViewModel {
     public void loadPosts() {
         compositeDisposable.add(postService.getPosts()
                 .flatMapObservable(Observable::fromIterable)
-                .map(post -> new PostItem(post))
+                .map(post -> new PostItem(post, this))
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -74,6 +77,10 @@ public class PostViewModel extends AndroidViewModel {
         return livePosts;
     }
 
+    /**
+     * ViewModel은 생명중기를 알고 동작한다.
+     * 뷰 모델이 파괴될 때, RxJava의 Disposable과 같은 리소스등을 해제할 수 있도록 한다.
+     */
     @Override
     protected void onCleared() {
         super.onCleared();
@@ -81,13 +88,27 @@ public class PostViewModel extends AndroidViewModel {
         compositeDisposable.clear();
     }
 
-    /**
-     * ViewModel은 생명중기를 알고 동작한다.
-     * 뷰 모델이 파괴될 때, RxJava의 Disposable과 같은 리소스등을 해제할 수 있도록 한다.
-     */
-
-
     public MutableLiveData<Boolean> getLoading() {
         return loading;
+    }
+
+    /**
+     * PostItem 클릭 이벤트 구현
+     */
+    @Override
+    public void onPostClick(PostItem postItem) {
+        // Fragment로 이벤트를 전달하도록 SingleLiveEvent의 값을 변경한다.
+        postClickEvent.setValue(postItem);
+    }
+
+    /**
+     * PostFragment로 postClickEvent 변수를 노출
+     * .
+     * PostViewModel이 이벤트를 수신하지만, 이에 대한 처리는 프래그먼트만 할 수 있다.
+     * 그러므로 다시 Fragment로 이벤트를 전달해야 한다. ---> LiveData
+     * getPostClickEvent() 메서드를 통해 SingleLiveEvent(LiveData)를 노출하여 Fragment가 이를 구독하도록 구현
+     */
+    public SingleLiveEvent<PostItem> getPostClickEvent() {
+        return postClickEvent;
     }
 }
