@@ -24,11 +24,11 @@ import javax.inject.Singleton;
 public class AppViewModelFactory implements ViewModelProvider.Factory {
 
     // ViewModel 클래스를 키로 갖는 멀티바인딩된 Map
-    // 키 : ViewModelKey --> todo
+    // 키 : ViewModelKey
     private Map<Class<? extends ViewModel>, Provider<ViewModel>> creators;
 
-    // 생성자 주입
-    // @Binds : ViewModelModule --> todo
+    // 생성자 주입, 멀티 바인딩
+    // @Binds : ViewModelModule
     @Inject
     public AppViewModelFactory(Map<Class<? extends ViewModel>, Provider<ViewModel>> creators) {
         this.creators = creators;
