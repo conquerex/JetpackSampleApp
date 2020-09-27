@@ -8,6 +8,7 @@ import dagger.Module;
 import dagger.multibindings.IntoMap;
 import jetpack.sample.app.ui.detail.PostDetailViewModel;
 import jetpack.sample.app.ui.post.PostViewModel;
+import jetpack.sample.app.ui.user.UserViewModel;
 
 /**
  * Created by jongkook on 2020.09.02
@@ -56,4 +57,9 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(PostDetailViewModel.class)
     abstract ViewModel bindsPostDetailViewModel(PostDetailViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserViewModel.class)
+    abstract ViewModel bindsUserViewModel(UserViewModel viewModel);
 }

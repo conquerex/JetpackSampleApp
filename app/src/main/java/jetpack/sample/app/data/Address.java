@@ -26,4 +26,9 @@ public class Address {
     public String getStreet() {
         return street;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %s", suite, street, city);
+    }
 }
