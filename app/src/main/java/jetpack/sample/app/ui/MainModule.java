@@ -17,6 +17,8 @@ import jetpack.sample.app.ui.detail.PostDetailFragment;
 import jetpack.sample.app.ui.detail.PostDetailModule;
 import jetpack.sample.app.ui.post.PostFragment;
 import jetpack.sample.app.ui.post.PostModule;
+import jetpack.sample.app.ui.user.UserFragment;
+import jetpack.sample.app.ui.user.UserModule;
 
 /**
  * Created by jongkook on 2020.09.03
@@ -48,4 +50,7 @@ public abstract class MainModule {
     @ContributesAndroidInjector(modules = PostDetailModule.class)
     abstract PostDetailFragment getPostDetailFragment();
 
+    @FragmentScope
+    @ContributesAndroidInjector(modules = UserModule.class)
+    abstract UserFragment getUserFragment();
 }
