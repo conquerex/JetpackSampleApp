@@ -63,7 +63,7 @@ public class PostViewModel extends AndroidViewModel implements PostItem.EventLis
      * 1. ViewModel의 생성 시 필요한 생성자 매개 변수를
      * 오브젝트 그래프의 @Singleton 범위 내에서만 제공 받는다.
      */
-    @Inject
+//    @Inject
     public void loadPosts() {
         compositeDisposable.add(postService.getPosts()
                 .flatMapObservable(Observable::fromIterable)

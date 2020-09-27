@@ -44,6 +44,8 @@ public class PostDetailFragment extends DaggerFragment {
         viewModel = new ViewModelProvider(this, viewModelFactory).get(PostDetailViewModel.class);
         if (savedInstanceState == null) {
             // Post 객체를 전달받는다.
+            PostDetailFragmentArgs args = PostDetailFragmentArgs.fromBundle(getArguments());
+            viewModel.load(args.getPost());
         }
     }
 
@@ -60,5 +62,11 @@ public class PostDetailFragment extends DaggerFragment {
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.setViewModel(viewModel);
+
+        viewModel.getLiveItems().observe(getViewLifecycleOwner(), items -> adapter.setItems(items));
+
+        viewModel.getUserClickEvent().observe(getViewLifecycleOwner(), userId -> {
+//            navController.get().navigate();
+        });
     }
 }

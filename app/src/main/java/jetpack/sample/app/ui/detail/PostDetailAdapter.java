@@ -61,7 +61,7 @@ public class PostDetailAdapter extends RecyclerView.Adapter<ViewBindingHolder> {
         return items.size();
     }
 
-    public void seteItems(List<PostDetailItem> items) {
+    public void setItems(List<PostDetailItem> items) {
         this.items.clear();
         this.items.addAll(items);
         this.notifyDataSetChanged();
