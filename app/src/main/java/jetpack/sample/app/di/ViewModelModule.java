@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
+import jetpack.sample.app.ui.detail.PostDetailViewModel;
 import jetpack.sample.app.ui.post.PostViewModel;
 
 /**
@@ -50,4 +51,9 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(PostViewModel.class)
     abstract ViewModel bindsPostViewModel(PostViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PostDetailViewModel.class)
+    abstract ViewModel bindsPostDetailViewModel(PostDetailViewModel viewModel);
 }

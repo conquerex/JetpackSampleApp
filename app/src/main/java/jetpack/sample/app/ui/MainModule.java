@@ -13,6 +13,8 @@ import jetpack.sample.app.databinding.ActivityMainBinding;
 import jetpack.sample.app.di.ActivityContext;
 import jetpack.sample.app.di.ActivityScope;
 import jetpack.sample.app.di.FragmentScope;
+import jetpack.sample.app.ui.detail.PostDetailFragment;
+import jetpack.sample.app.ui.detail.PostDetailModule;
 import jetpack.sample.app.ui.post.PostFragment;
 import jetpack.sample.app.ui.post.PostModule;
 
@@ -41,4 +43,9 @@ public abstract class MainModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = PostModule.class)
     abstract PostFragment getPostFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = PostDetailModule.class)
+    abstract PostDetailFragment getPostDetailFragment();
+
 }

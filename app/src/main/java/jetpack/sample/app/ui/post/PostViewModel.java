@@ -43,6 +43,10 @@ public class PostViewModel extends AndroidViewModel implements PostItem.EventLis
      */
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
 
+    /**
+     * @Inject 생성자가 있는 모든 클래스에 대해 Dagger는 Factory를 생성합니다
+     * --> PostViewModel_Factory
+     */
     @Inject
     public PostViewModel(@NonNull Application application,
                          @NonNull PostService postService,

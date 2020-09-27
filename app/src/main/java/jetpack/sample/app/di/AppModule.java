@@ -28,6 +28,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
         RetrofitModule.class
 })
 public class AppModule {
+    /**
+     * Dagger는 모듈의 모든 @Provides 메소드에 대해 하나의 팩토리를 생성합니다.
+     * --> AppModule_ProvideAppFactory
+     */
     @Provides
     @Singleton
     Application provideApp(App app) {
