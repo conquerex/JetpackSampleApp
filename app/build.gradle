@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'androidx.navigation.safeargs' // 네비게이션 컴포넌트의 Safe Args 플러그인 추가
 
 android {
     compileSdkVersion 29

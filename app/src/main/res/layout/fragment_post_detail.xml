@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.post.PostFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <!-- ProgressBar 표현을 위한 View 패키지 참조 및 ViewModel 변수 선언 -->
         <import type="android.view.View" />
-
         <variable
             name="viewModel"
-            type="jetpack.sample.app.ui.post.PostViewModel" />
+            type="jetpack.sample.app.ui.detail.PostDetailViewModel" />
     </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,8 +23,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Data가 로드 중임을 알린다. -->
-
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,5 +33,4 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

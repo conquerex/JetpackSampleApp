@@ -43,6 +43,10 @@ public class PostViewModel extends AndroidViewModel implements PostItem.EventLis
      */
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(true);
 
+    /**
+     * @Inject 생성자가 있는 모든 클래스에 대해 Dagger는 Factory를 생성합니다
+     * --> PostViewModel_Factory
+     */
     @Inject
     public PostViewModel(@NonNull Application application,
                          @NonNull PostService postService,
@@ -59,7 +63,7 @@ public class PostViewModel extends AndroidViewModel implements PostItem.EventLis
      * 1. ViewModel의 생성 시 필요한 생성자 매개 변수를
      * 오브젝트 그래프의 @Singleton 범위 내에서만 제공 받는다.
      */
-    @Inject
+//    @Inject
     public void loadPosts() {
         compositeDisposable.add(postService.getPosts()
                 .flatMapObservable(Observable::fromIterable)

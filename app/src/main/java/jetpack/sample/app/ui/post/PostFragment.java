@@ -60,10 +60,10 @@ public class PostFragment extends DaggerFragment {
         }
     }
 
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_post, container, false);
         return binding.getRoot();
     }
 
@@ -83,7 +83,13 @@ public class PostFragment extends DaggerFragment {
                 .observe(getViewLifecycleOwner(), list -> adapter.setItems(list));
 
         // 게시 글이 클릭되었을 때 게시글 상세 화면 목적지로 이동
-//        viewModel.getPostClickEvent()
-//                .observe(getViewLifecycleOwner(), postItem -> navController.get().navigate(...));
+        viewModel.getPostClickEvent()
+                .observe(getViewLifecycleOwner(),
+                        postItem -> navController.get().navigate(
+                                PostFragmentDirections.actionPostFragmentToPostDetailFragment(
+                                        postItem.getPost()
+                                )
+                        )
+                );
     }
 }
